@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="snowfall"></div>
+    <div class="container">
+        <h1>Global Weather Explorer</h1>
+        <form method="post">
+            <label for="city">Enter city name:</label>
+            <input type="text" id="city" name="city" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if weather_data %}
+            <h2>Weather in {{ weather_data['name'] }}:</h2>
+            <p>Temperature: {{ weather_data['main']['temp'] }}°C</p>
+            <p>Description: {{ weather_data['weather'][0]['description'] }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // Add snowflakes dynamically
+        const snowfall = document.querySelector('.snowfall');
+        for (let i = 0; i < 50; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 2 + 1 + 's';
+            snowfall.appendChild(snowflake);
+        }
+    </script>
+</body>
+</html>
